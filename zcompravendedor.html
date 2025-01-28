@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Notificação de Compra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(240, 241, 245);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            background-color:  #0c473d;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .chat-container {
+            background-color: #fff  ;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 10px 0;
+            padding: 10px;
+            text-align: left;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: rgb(230, 230, 250);
+            border-radius: 5px;
+            color: #333;
+        }
+
+        .footer {
+            margin-top: 10px;
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Notificação de Compra</h1>
+    </header>
+
+    <div class="chat-container">
+        <h2>Mensagem para o Vendedor</h2>
+        <div class="chat-box" id="chat-box">
+            <!-- Mensagens de compra aparecerão aqui -->
+        </div>
+        <button onclick="clearMessages()" style="background-color: rgb(26, 185, 98); color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+            Limpar Chat
+        </button>
+        <div class="footer">Notificações automáticas para o vendedor</div>
+    </div>
+
+    <script>
+        // Carrega as informações do produto do LocalStorage
+        function loadNotification() {
+            const chatBox = document.getElementById('chat-box');
+            const product = JSON.parse(localStorage.getItem('product'));
+            
+            if (product) {
+                const message = `
+                    <div class="message">
+                        📢 <strong>Nova Compra Realizada!</strong><br>
+                        <strong>Produto:</strong> ${product.name} <br>
+                        <strong>Preço:</strong> ${product.price} <br>
+                        <strong>Descrição:</strong> ${product.description}
+                    </div>
+                `;
+                chatBox.innerHTML = message; // Adiciona a mensagem
+            } else {
+                chatBox.innerHTML = '<div class="message">Nenhuma notificação encontrada.</div>';
+            }
+        }
+
+        // Função para limpar as mensagens
+        function clearMessages() {
+            localStorage.removeItem('product'); // Remove a notificação salva
+            document.getElementById('chat-box').innerHTML = '<div class="message">Nenhuma notificação encontrada.</div>';
+        }
+
+        // Carrega a notificação ao abrir a página
+        window.onload = loadNotification;
+
+
+
+
+
+        
+    </script>
+    <script>
+        function loadNotification() {
+            const chatBox = document.getElementById('chat-box');
+            const cartData = JSON.parse(localStorage.getItem('cart'));
+    
+            if (cartData) {
+                let message = `
+                    <div class="message">
+                        📢 <strong>Nova Compra Realizada!</strong><br>
+                        <strong>Itens:</strong><br>
+                        <ul>
+                `;
+    
+                // Adiciona os itens do carrinho na mensagem
+                cartData.items.forEach(item => {
+                    message += `<li>${item.name} - R$ ${item.price}</li>`;
+                });
+    
+                message += `
+                        </ul>
+                        <strong>Total:</strong> R$ ${cartData.total}
+                    </div>
+                `;
+    
+                chatBox.innerHTML = message;
+            } else {
+                chatBox.innerHTML = '<div class="message">Nenhuma notificação encontrada.</div>';
+            }
+        }
+    
+        window.onload = loadNotification;
+    </script>
+    
+</body>
+</html>

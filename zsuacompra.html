@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificação de Compra</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url('background image/bluergrgrgrg.jpg');
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            padding: 50px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .button2 {
+            background-color: rgb(126, 16, 16);
+            color: aliceblue;
+            border-radius: 20px;
+            padding: 5px;
+            margin-top: 150px; /* Mover para baixo */
+        }
+        textarea { 
+            padding: 10px;
+            width: 100%; /* O textarea ocupa 100% do elemento pai */
+            max-width: 380px; /* Limite máximo de largura */
+            height: 65px; /* Altura do campo para permitir múltiplas linhas */
+            
+            border-color: rgb(0, 81, 255);
+            border-radius: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            text-align: start;
+        }
+
+        /* Estilo do alerta */
+        .alert {
+            background-color: #ff4d4d;
+            color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            border-radius: 10px;
+            border: 2px solid #d43f3a;
+            animation: blink 1s step-start infinite;
+            display: none; /* Inicialmente escondido */
+        }
+
+        /* Animação de "piscar" */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Confirme antes de comprar!</h1>
+    <p><strong>Hora da Compra:</strong> <span id="purchase-time"></span></p>
+    <p><strong>Quantidade de Produtos:</strong> <span id="product-count"></span></p>
+    <p><strong>Valor Total:</strong> R$ <span id="total-value"></span></p>
+    <p><strong>Taxa de Entrega:</strong> R$ <span id="delivery-fee"></span></p>
+    
+    <!-- Caixa de alerta de erro -->
+    <div class="alert" id="error-alert">
+        O preço foi alterado ou corrompido. A compra não pode ser realizada!
+    </div>
+
+
+    <p><strong>Tipo de Mercado:</strong> <span id="market-type"></span></p>
+    <p><strong>Nome do comprador e endereço:</strong> <span ></span></p>
+    
+    
+    </p>
+    
+    
+    <button class="button" id="buy-button" onclick="confirmPurchase()">Comprar</button>
+    <button class="button2" onclick="window.location.href='conectan.html'">Voltar para a Página Inicial</button>
+
+    
+</div>
+
+<script>
+    // Obtém os dados da URL (passados pelo redirecionamento)
+    const urlParams = new URLSearchParams(window.location.search);
+    const totalValue = parseFloat(urlParams.get('totalValue')); // Converte para número
+    const productCount = urlParams.get('productCount');
+    const marketType = urlParams.get('marketType');
+    const purchaseTime = urlParams.get('purchaseTime');
+    
+    // Defina a taxa de entrega (você pode buscar essa informação de outra página ou definir um valor fixo)
+    const deliveryFee = 5.00; // Exemplo: R$10,00
+
+    // Soma o valor total com a taxa de entrega
+    const finalTotal = totalValue + deliveryFee;
+
+    // Exibe as informações da compra na página
+    document.getElementById('purchase-time').textContent = purchaseTime;
+    document.getElementById('product-count').textContent = productCount;
+    document.getElementById('total-value').textContent = finalTotal.toFixed(2); // Exibe com 2 casas decimais
+    document.getElementById('delivery-fee').textContent = deliveryFee.toFixed(2);
+    document.getElementById('market-type').textContent = marketType;
+
+    // Função para confirmar a compra
+    function confirmPurchase() {
+        // Pega o valor exibido na página
+        const displayedTotal = parseFloat(document.getElementById('total-value').textContent);
+        
+        // Verifica se o valor exibido é o mesmo que o calculado
+        if (displayedTotal !== finalTotal) {
+            // Exibe o alerta de erro
+            document.getElementById('error-alert').style.display = 'block';
+            
+            // Aguarda um momento e redireciona o usuário para a página principal
+            setTimeout(function() {
+                window.location.href = 'conectan.html'; // Redireciona para a página principal
+            }, 5000); // Redireciona após 5 segundos
+            return;
+        }
+
+        // Se tudo estiver correto, o usuário pode prosseguir para o processo de compra
+        window.open('sua_api_url', '_blank'); // API de compra
+        window.location.href = 'Node.js'; // Redireciona
+    }
+</script>
+
+</body>  
+</html>

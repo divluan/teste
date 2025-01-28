@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificação de Compra</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url('background image/bluergrgrgrg.jpg')
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            padding: 50px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .button2 {
+            background-color: rgb(126, 16, 16);
+            color: aliceblue;
+            border-radius: 20px;
+            padding: 5px;
+            margin-top: 150px; /* Mover para baixo */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Confirme antes de comprar!</h1>
+    <p><strong>Hora da Compra:</strong> <span id="purchase-time"></span></p>
+    <p><strong>Quantidade de Produtos:</strong> <span id="product-count"></span></p>
+    <p><strong>Valor Total:</strong> R$ <span id="total-value"></span></p>
+    <p><strong>Taxa de Entrega:</strong> R$ <span id="delivery-fee"></span></p>
+    <p><strong>Tipo de Mercado:</strong> <span id="market-type"></span></p>
+    <button class="button" onclick="window.open('sua_api_url', '_blank'); window.location.href='API.html';">Comprar</button>
+    <button class="button2" onclick="window.location.href='conectan.html'">Cancelar a compra </button>
+</div>
+
+<script>
+    // Obtém os dados da URL (passados pelo redirecionamento)
+    const urlParams = new URLSearchParams(window.location.search);
+    const totalValue = parseFloat(urlParams.get('totalValue')); // Converte para número
+    const productCount = urlParams.get('productCount');
+    const marketType = urlParams.get('marketType');
+    const purchaseTime = urlParams.get('purchaseTime');
+    
+    // Defina a taxa de entrega (você pode buscar essa informação de outra página ou definir um valor fixo)
+    const deliveryFee = 5.00; // Exemplo: R$10,00
+
+    // Soma o valor total com a taxa de entrega
+    const finalTotal = totalValue + deliveryFee;
+
+    // Exibe as informações da compra na página
+    document.getElementById('purchase-time').textContent = purchaseTime;
+    document.getElementById('product-count').textContent = productCount;
+    document.getElementById('total-value').textContent = finalTotal.toFixed(2); // Exibe com 2 casas decimais
+    document.getElementById('delivery-fee').textContent = deliveryFee.toFixed(2);
+    document.getElementById('market-type').textContent = marketType;
+</script>
+
+</body>
+</html>
+

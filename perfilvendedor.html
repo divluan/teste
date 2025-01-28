@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercados</title>
+    <style>
+        /* Estilo geral da página */
+        body {
+            background-color: #0c473d8a;
+            background-image: url('background image/bluergrgrgrg.jpg');
+            background-size: cover;
+            background-position: center center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            color: #fff;
+        }
+
+        /* Header - Navegação e logo */
+        header {
+            background-color:#0c473d8a ;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+           
+           
+        }
+        .header img {
+            max-width: 90px; /* Largura máxima */
+            min-width: 80px; /* Largura mínima */
+            height: auto; /* Ajusta a altura proporcionalmente */
+            
+        }
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            
+            padding: 6px 12px; /* Espaçamento interno confortável */
+            border-radius: 5px;
+            
+            
+             
+        }
+
+        nav a:hover {
+            background-color: rgba(20, 150, 80, 0.8);
+            transform: scale(1.05); /* Efeito de aumento */
+        }
+
+        /* Estilos do conteúdo */
+        .container {
+            width: 65%; /* Reduzindo para 65% */
+            max-width: 700px; /* Ajustando o máximo para 700px */
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.85); /* Fundo com transparência */
+            padding: 25px; /* Ajustando o padding */
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .perfil-header h1 {   /* Posso usar para adicionar uma imagem futuramente /
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem; /* Ajustando o tamanho da fonte */
+            color: #333;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Alinhamento dos campos de perfil */
+        .perfil-info {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .foto-perfil img {
+            width: 100px; /* Ajustando o tamanho da imagem */
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .detalhes-perfil {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .detalhes-perfil p {
+            margin-bottom: 12px; /* Ajustando o espaçamento entre os parágrafos */
+            font-size: 1.1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .detalhes-perfil p strong {
+            font-size: 1.2rem;
+            color: #0c473d;
+            margin-right: 10px; /* Alinha os textos e o campo de entrada */
+        }
+
+        /* Estilo para os campos de entrada */
+        .detalhes-perfil input {
+            border: 2px solid #0c473d;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 1rem;
+            color: #333;
+            background-color: #f4f4f9;
+            transition: background-color 0.3s ease;
+            cursor: not-allowed;
+            width: 60%; /* Tamanho uniforme de todos os inputs */
+        }
+
+        .detalhes-perfil input:focus {
+            background-color: #e7f7e7;
+            outline: none;
+        }
+
+        /* Estilo para o campo tipo de perfil (barra laranja) */
+        .tipo-perfil {
+            background-color: #f4f4f9;
+            border-left: 6px solid #f79c42; /* Cor laranja */
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .tipo-perfil input {
+            color: #f79c42; /* Cor laranja no texto */
+            font-weight: bold;
+            background-color: transparent;
+            border: none;
+            cursor: not-allowed;
+            width: 60%; /* Ajustando para o mesmo tamanho */
+        }
+
+        /* Botões de ações */
+        .acoes button, .acoespedido button {
+            background-color: #bb0e90;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .acoes button:hover, .acoespedido button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px); /* Efeito de levitação */
+        }
+
+        .acoes button:focus, .acoespedido button:focus {
+            outline: none;
+        }
+
+        .acoespedido button {
+            background-color: #294eca;
+        }
+
+        .acoespedido button:hover {
+            background-color: #235ab8;
+        }
+
+        /* Estilo da seção de "Tipo de perfil" */
+        .tipo-perfil {
+            background-color: #f4f4f9;
+            border-left: 6px solid #3913a3;
+            padding-left: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .tipo-perfil input {
+            color: #3913a3;
+            font-weight: bold;
+            background-color: transparent;
+            border: none;
+            cursor: not-allowed;
+        }
+        
+        /* Melhorando a acessibilidade visual */
+        u {
+            text-decoration-color: #f79c42; /* Cor vibrante para o texto sublinhado */
+            text-decoration-thickness: 3px; /* Aumentando a espessura */
+        }
+        h6 { 
+            background-color: #14923a;
+            color: white;     
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 1rem;
+            
+        }
+     
+        /* Botões de ações */
+            button-2 {
+            background-color: #a3261e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+       /*  mude a cor do status de mercado  */
+    /* Cor para quando o mercado está fechado */
+    #openMarketButton {
+    background-color: green;
+    color: white;
+   }
+
+   /* Cor para quando o mercado está aberto */
+    #closeMarketButton {
+    background-color: red;
+    color: white;
+    }
+
+    /* Cor de fundo ao passar o mouse */
+    button:hover {
+    opacity: 0.8;
+    }
+
+
+
+    /* Notificação de abertura de mercado */
+
+    .custom-notification {
+        width: 120px;
+        top: 8%;
+        left: 42%;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50; /* Verde para sucesso */
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+        z-index: 1000;
+        animation: fade-in-out 3s;
+        align-items: center;
+      }
+      
+      /* Animação para suavizar a entrada e saída */
+      @keyframes fade-in-out {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        10%, 90% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+      }
+      /* Notificação de abertura de mercado */
+
+
+
+
+
+
+
+
+ /* Notificação de fechamento de mercado */
+
+      .custom-notification {
+        width: 120px;
+        top: 25%;
+        left: 42%;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50; /* Verde para sucesso */
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+        z-index: 1000;
+        animation: fade-in-out 3s;
+        align-items: center;
+      }
+      
+      /* Estilo para a notificação de abertura */
+      .custom-notification:not(.closed) {
+        background-color: #4CAF50; /* Verde para sucesso */
+        color: white;
+      }
+      
+      /* Estilo para a notificação de fechamento */
+      .custom-notification.closed {
+        background-color: #F44336; /* Vermelho para alerta */
+        color: white;
+      }
+
+
+
+     /* Faça o saque do valor */
+     /* fazersaque */
+     .fazersaque {
+      background-color: #0b7032;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 115px;
+    
+    }
+    
+    
+    .fazersaque button { 
+      color: #ffffff;
+      background-color: #0b7032;
+      border:none;
+      font-size: 16px;
+    }
+    .valor-input {
+      background-color: #3913a3;
+    }
+
+
+
+
+
+      
+      /* Animação para suavizar a entrada e saída */
+      @keyframes fade-in-out {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        10%, 90% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+      }
+      /* Notificação de fechamento de mercado */
+
+
+
+
+     
+
+
+
+
+        /* Animações de entrada suaves */
+        .container {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header img">
+            <img src="images/logo mercados/LOGO COMPREMAISANDARAI PNG2.png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <nav>
+                <a href="conectan.html">Início</a>
+                <a href="psobre.html">Sobre</a>
+                <a href="paginaoff.html">Mais</a>
+            </nav>
+        </div>
+    </header>
+
+    
+
+    <!-- Conteúdo do corpo não alterado -->
+    <div class="container">
+        <div class="perfil-header">
+          <img src="acione o png" alt="">
+          <!-- Posso usar para adicionar uma imagem futuramente -->
+        </div>
+
+        <h6 id="marketStatus">Estado atual: Aberto</h6>
+        <div class="perfil-info">
+            <div class="foto-perfil">
+                <img src="images/fotodeperfil/perfil.jpg" alt="Foto do Usuário">
+            </div>
+            <div class="detalhes-perfil">
+                <p class="tipo-perfil">
+                    <strong>Tipo de perfil: 
+                        <input type="text" value="Vendedor" id="input" readonly onfocus="this.select()">
+                    
+                    </strong>
+                </p>
+                <p>
+                    <strong>Nome: 
+                        <input type="text" value="Maria Santos" id="input" readonly onfocus="this.select()">
+                    
+                    </strong>
+                </p>
+                <p>
+                    <strong>Email: 
+                        <input type="text" value="Vendedor" id="input" readonly onfocus="this.select()">
+                    
+                    </strong>
+                </p>
+                <u>
+                    <strong><a>Valor total de vendas:</a> 
+                        <input type="text" value="550,00" id="input" readonly onfocus="this.select()">
+                         
+                      </strong>
+                </u>
+                
+            </div>
+        </div>
+
+        <div class="acoes">
+
+            <button id="closeMarketButton" color="Red" style="display: none;">Fechar Mercado</button>
+            <button id="openMarketButton" color="green" class="abrir" style="display: none;">Abrir Mercado</button>
+            
+        </div>
+    
+  </main>
+  <div class="acoes">
+    <a class="acoespedido" href="pchat.html">
+        <button>Pedidos de compras</button>
+    </a>
+
+  </div>
+  <div class="acoes">
+    <a href="compreaqui.html">
+        <button>Pagina principal</button>
+        
+    </a>
+  </div>
+  <div class="fazersaque">
+    <a class="fazersaquebutton" href="https://wa.me/75983045169/?text=Eu quero sacar o valor acumulado de meu perfil no valor de 550,00">
+        <button>Fazer Saque</button>
+        
+        <div class="valor-input">
+          <input type="text" value="550,00" id="input" readonly onfocus="this.select()">
+                    
+  
+        </div>       
+    </a>
+
+  </div>
+  <footer>
+    <p>© 2025 COMPRE AQUI ANDARAI, Inc.</p>
+  </footer>
+
+
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const marketStatus = document.getElementById("marketStatus");
+        const closeMarketButton = document.getElementById("closeMarketButton");
+        const openMarketButton = document.getElementById("openMarketButton");
+      
+        // Atualiza o estado e visibilidade dos botões
+        function updateButtonVisibility() {
+          const state = localStorage.getItem("mercadoEstado") || "Aberto";
+      
+          // Atualiza o texto do estado atual
+          if (marketStatus) {
+            marketStatus.textContent = `Estado atual: ${state}`;
+          }
+      
+          // Controla a visibilidade dos botões
+          if (state === "Aberto") {
+            if (closeMarketButton) closeMarketButton.style.display = "inline-block";
+            if (openMarketButton) openMarketButton.style.display = "none";
+          } else if (state === "Fechado") {
+            if (closeMarketButton) closeMarketButton.style.display = "none";
+            if (openMarketButton) openMarketButton.style.display = "inline-block";
+          }
+        }
+      
+        // Fechar mercado
+        if (closeMarketButton) {
+            closeMarketButton.addEventListener("click", () => {
+              localStorage.setItem("mercadoEstado", "Fechado");
+          
+              // Criar a notificação
+              const notification = document.createElement("div");
+              notification.className = "custom-notification closed";
+              notification.textContent = "Mercado fechado";
+              document.body.appendChild(notification);
+          
+              // Remover a notificação após 3 segundos
+              setTimeout(() => {
+                notification.style.opacity = 0;
+                setTimeout(() => {
+                  notification.remove();
+                }, 500); // Tempo de transição de fade out
+              }, 3000);
+          
+              updateButtonVisibility();
+            });
+          }
+          
+      
+
+
+
+
+
+
+
+        // Abrir mercado
+        if (openMarketButton) {
+            openMarketButton.addEventListener("click", () => {
+              localStorage.setItem("mercadoEstado", "Aberto");
+          
+              // Criar a notificação
+              const notification = document.createElement("div");
+              notification.className = "custom-notification";
+              notification.textContent = "Mercado aberto.";
+              document.body.appendChild(notification);
+          
+              // Remover a notificação após 3 segundos
+              setTimeout(() => {
+                notification.remove();
+              }, 3000);
+          
+              updateButtonVisibility();
+            });
+          }
+      
+        // Atualiza o estado inicial ao carregar a página
+        updateButtonVisibility();
+      
+        // Atualiza o estado quando houver mudanças no localStorage
+        window.addEventListener("storage", updateButtonVisibility);
+      });
+      
+
+  </script>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercados</title>
+    <script src=”caminho”></script>
+    <link rel="stylesheet" href="compreaqui.css">
+    <script src="compreaqui.js" defer></script>
+
+       
+</head>
+<body>
+   
+    
+    <header>
+        <div class="header img">
+            <img src="images/logo mercados/LOGO COMPREMAISANDARAI PNG2.png" alt="Logo">
+        
+
+        </div>
+           
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Buscar produtos........" oninput="searchProducts()">
+            <button onclick="searchProducts()">Buscar</button>
+           
+        </div>
+        
+       
+    </header>
+    <nav>
+        <a href="conectan.html" href="#">Início  </a>
+        <a href="psobre.html" href="#">Sobre</a>
+        <a href="paginaoff.html" href="#">Mais</a>
+        <a href="perfilcomprador.html" href="#">Seu perfil</a>
+        <a href="pcomofunciona.html" href="#">Como comprar</a>
+    
+    </nav>
+      
+           <!-- Imagem para divulgação de promoções -->
+        </nav>
+        <div class="img promoção">
+          <img src="arte de divulgação aqui" alt="">
+        </div>
+          
+
+
+
+
+
+    <div class="frase">
+        <h2>Sua jornada de compras começa aqui!</h2>
+    </div>
+ 
+
+    
+</div>
+
+
+
+<div class="mercados">
+    <div class="mercado-item" onclick="showMarketProducts('mercado1')">
+        <img src="images/logo mercados/logo mercado.jpg" style="width: 50px; height: 50px; display: block; margin: 0 auto;">
+        <span>Mercado 1</span>
+        
+        <button id="closeMarketButton" class="buttonaberto">Aberto</button>
+        <button id="openMarketButton" class="buttonfechado">Fechado</button>
+
+    </div>
+
+        <div class="mercado-item" onclick="showMarketProducts('mercado2')">
+            <img src="images/logo mercados/logo mercado.jpg" style="width: 50px; height: 50px; display: block; margin: 0 auto;">
+            <span>Mercado 2</span>
+           
+            
+        </div>
+        <div class="mercado-item" onclick="showMarketProducts('mercado3')">
+            <img src="images/logo mercados/logo mercado.jpg" style="width: 50px; height: 50px; display: block; margin: 0 auto;">
+            <span>Mercado 2</span>
+        </div>
+        <div class="mercado-item" onclick="showMarketProducts('mercado4')">
+            <img src="images/logo mercados/logo mercado.jpg" style="width: 50px; height: 50px; display: block; margin: 0 auto;">
+            <span>Mercado 3</span>
+        </div>
+        
+    </div>
+   
+
+
+    <div class="highlighted-text" id="warning-message" style="display: none;">
+        <img class="avisoimg" src="images/aviso/aviso.png" >
+        <p>Adicione produtos do mesmo Mercado.</p>
+        
+        
+    </div>
+
+
+
+    <div class="container" id="product-container"></div>
+
+    <div class="carrinho" id="carrinho">
+        <h2>Carrinho de Compras</h2>
+        <ul id="cart-items"></ul>
+        <p><strong>Total:</strong> R$ <span id="cart-total">0.00</span></p>
+        <div class="compra2">
+            <b onclick="finalizarCompra()">Comprar</b>
+        </div>
+        
+    </div>
+<footer>
+    <p>© 2024 CONECTAN, Inc.</p>
+</footer>
+    
+</body>
+</html>
